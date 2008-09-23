@@ -1,5 +1,5 @@
 #
-# This is an asset retriever for to be used as a companion to the PHP hot_cache script.
+# This is an asset retriever to be used as a companion to the PHP hot_cache script.
 #
 # Dependencies:
 # * Thin web server (and all its dependencies: ruby, rubygems etc.)

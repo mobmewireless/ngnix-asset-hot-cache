@@ -71,6 +71,7 @@ if(file_exists($dump_file)) {
 
 
 function log_message($message) {
+  global $log;
   if($log) {
     echo $message . "<br />";
   }

@@ -52,12 +52,12 @@ if(file_exists($dump_file)) {
   # file not in cache
   
   # Do a 301 redirect.
-  header('Location: ' . $asset_location);
+  header('Location: ' . $asset_url);
   ob_flush();
   
   # GET to the asset_retriever
   $asset_retriever_url = 'http://' . $settings['asset_retriever']['host'] . ':' . 
-    $settings['asset_retriever']['port'] . '/' . $asset_location;
+    $settings['asset_retriever']['port'] . '/' . $asset_url;
     
   file_get_contents_with_timeout($asset_retriever_url);
 }

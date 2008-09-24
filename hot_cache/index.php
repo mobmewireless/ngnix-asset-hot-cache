@@ -53,7 +53,7 @@ log_message("Initing...");
 if(file_exists($dump_file)) {
   # file in cache
   # see http://wiki.codemongers.com/NginxXSendfile
-  log_message("File exists")
+  log_message("File exists");
   header('X-Accel-Redirect: /protected/' . $dump_location);
 } else { 
   # file not in cache

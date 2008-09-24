@@ -40,15 +40,20 @@ $asset_url = filter_var($_SERVER['QUERY_STRING'], FILTER_SANITIZE_URL);
 
 $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '__'), $asset_url);
 $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
+$send_file_header = 'X-Accel-Redirect: /dump/' . $dump_location;
+log_message($send_file_header);
 
 log_message("Initing...");
 log_message("Checking for $dump_file...");
+log_message("Dump location: $dump_location");
 
 if(is_file($dump_file)) {
   # file in cache
   # see http://wiki.codemongers.com/NginxXSendfile
   log_message("File exists");
-  header('X-Accel-Redirect: /dump/' . $dump_location);
+
+  header('X-Pretend-' . $send_file_header);
+  header($send_file_header);
 } else { 
   # file not in cache
   log_message("File does not exist");

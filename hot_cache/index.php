@@ -34,7 +34,7 @@ Licensed under the new BSD license.
 require_once('./vendor/spyc/spyc.php');
 
 $settings = Spyc::YAMLLoad('../settings.yml');
-$log = true;
+$log = false;
 
 $asset_url = filter_input(INPUT_SERVER, 'QUERY_STRING');
 

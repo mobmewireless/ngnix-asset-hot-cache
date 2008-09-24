@@ -34,6 +34,7 @@ Licensed under the new BSD license.
 require_once('./vendor/spyc/spyc.php');
 
 $settings = Spyc::YAMLLoad('../settings.yml');
+$log = true;
 
 $asset_url = filter_input(INPUT_SERVER, 'QUERY_STRING');
 
@@ -47,9 +48,12 @@ if(isset($settings['buckets']['map'][$bucket_key])) {
 $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '__'), $asset_url);
 $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
 
+log_message("Initing...");
+
 if(file_exists($dump_file)) {
   # file in cache
   # see http://wiki.codemongers.com/NginxXSendfile
+  log_message("File exists")
   header('X-Accel-Redirect: /protected/' . $dump_location);
 } else { 
   # file not in cache
@@ -63,6 +67,13 @@ if(file_exists($dump_file)) {
     $settings['asset_retriever']['port'] . '/' . $asset_location;
     
   file_get_contents_with_timeout($asset_retriever_url);
+}
+
+
+function log_message($message) {
+  if($log) {
+    echo $message . "<br />";
+  }
 }
 
 

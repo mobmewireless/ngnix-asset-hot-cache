@@ -31,7 +31,7 @@ Licensed under the new BSD license.
 * To expire an asset from the cache, simply delete it from the dump location.
 */
 
-require_once('vendor/spyc/spyc.php');
+require_once('./vendor/spyc/spyc.php');
 
 $settings = Spyc::YAMLLoad('../settings.yml');
 
@@ -45,7 +45,7 @@ if(isset($settings['buckets']['map'][$bucket_key])) {
 }
 
 $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '__'), $asset_url);
-$dump_file = $settings['dump_dir'] . '/' . $dump_location;
+$dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
 
 if(file_exists($dump_file)) {
   # file in cache

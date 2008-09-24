@@ -38,13 +38,6 @@ $log = true;
 
 $asset_url = filter_input(INPUT_SERVER, 'QUERY_STRING');
 
-if(isset($settings['buckets']['map'][$bucket_key])) {
-  $bucket_name = $settings['buckets']['map'][$bucket_key]['name'];
-  $item_suffix = $settings['buckets']['map'][$bucket_key]['suffix'];
-} else {
-  die;
-}
-
 $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '__'), $asset_url);
 $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
 

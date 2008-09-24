@@ -36,7 +36,7 @@ require_once('./vendor/spyc/spyc.php');
 $settings = Spyc::YAMLLoad('../settings.yml');
 $log = true;
 
-$asset_url = filter_input(INPUT_SERVER, 'QUERY_STRING');
+$asset_url = $_SERVER['QUERY_STRING'];
 
 $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '__'), $asset_url);
 $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;

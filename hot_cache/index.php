@@ -34,7 +34,7 @@ Licensed under the new BSD license.
 require_once('./vendor/spyc/spyc.php');
 
 $settings = Spyc::YAMLLoad('../settings.yml');
-$log = false;
+$log = true;
 
 $asset_url = filter_input(INPUT_SERVER, 'QUERY_STRING');
 
@@ -42,6 +42,7 @@ $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '_
 $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
 
 log_message("Initing...");
+log_message("Checking for $dump_file...");
 
 if(is_file($dump_file)) {
   # file in cache
@@ -50,6 +51,8 @@ if(is_file($dump_file)) {
   header('X-Accel-Redirect: /protected/' . $dump_location);
 } else { 
   # file not in cache
+  log_message("File does not exist");
+  log_message("Location: $asset_url");
   
   # Do a 301 redirect.
   header('Location: ' . $asset_url);
@@ -58,6 +61,8 @@ if(is_file($dump_file)) {
   # GET to the asset_retriever
   $asset_retriever_url = 'http://' . $settings['asset_retriever']['host'] . ':' . 
     $settings['asset_retriever']['port'] . '/' . $asset_url;
+    
+  log_message("Asset Retriever url: $asset_retriever_url");
     
   file_get_contents_with_timeout($asset_retriever_url);
 }

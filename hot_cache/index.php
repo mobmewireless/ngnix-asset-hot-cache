@@ -43,7 +43,7 @@ $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
 
 log_message("Initing...");
 
-if(file_exists($dump_file)) {
+if(is_file($dump_file)) {
   # file in cache
   # see http://wiki.codemongers.com/NginxXSendfile
   log_message("File exists");

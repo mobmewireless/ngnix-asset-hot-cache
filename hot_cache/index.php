@@ -48,7 +48,7 @@ if(is_file($dump_file)) {
   # file in cache
   # see http://wiki.codemongers.com/NginxXSendfile
   log_message("File exists");
-  header('X-Accel-Redirect: /protected/' . $dump_location);
+  header('X-Accel-Redirect: /dump/' . $dump_location);
 } else { 
   # file not in cache
   log_message("File does not exist");

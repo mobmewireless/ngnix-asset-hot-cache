@@ -53,7 +53,8 @@ if(is_file($dump_file)) {
   log_message("File exists");
   
   $extension = strtolower(strrchr($dump_file, "."));
-  if(isset($settings['content_types'][$extension])) {
+  log_message("Extension is " . $extension);
+  if(array_key_exists($extension, $settings['content_types'])) {
     $mime_type = $settings['content_types'][$extension];
   } else {
     log_message("Couldn't find mime type for extension.");

@@ -51,8 +51,17 @@ if(is_file($dump_file)) {
   # file in cache
   # see http://wiki.codemongers.com/NginxXSendfile
   log_message("File exists");
-
-  header('X-Pretend-' . $send_file_header);
+  
+  $extension = strtolower(strrchr($dump_file, "."));
+  if(isset($settings['content_types'][$extension])) {
+    $mime_type = $settings['content_types'][$extension];
+  } else {
+    log_message("Couldn't find mime type for extension.");
+    die;
+  }
+  
+  log_message("Mime-type is: ". $mime_type);
+  header("Content-Type: " . $mime_type);
   header($send_file_header);
 } else { 
   # file not in cache

@@ -18,7 +18,7 @@ def asset_retriever(env)
   asset_url = env['PATH_INFO'].gsub(/^\/*/, '')
   response_hash = { "Content-Type" => "text/plain", "Content-Length" => '0' }
   
-  allow_regex = Regex.new($settings['asset_retriever']['allow_only_from'])
+  allow_regex = Regexp.new($settings['asset_retriever']['allow_only_from'])
   
   if asset_url.match(allow_regex)
     dump(asset_url)

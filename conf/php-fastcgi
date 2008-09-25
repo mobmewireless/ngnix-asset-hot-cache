@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/sbin/spawn-fcgi -a 127.0.0.1 -p 10004 -u www-data -f /usr/bin/php-cgi

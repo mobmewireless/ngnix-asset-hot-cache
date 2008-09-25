@@ -1,0 +1,36 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          init-fastcgi
+# Required-Start:    $all
+# Required-Stop:     $all
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts spawn-fcgi php-cgi  
+# Description:       starts spawn-fcgi php-cgi
+### END INIT INFO
+
+
+#!/bin/bash
+PHP_SCRIPT=/usr/bin/php-fastcgi
+RETVAL=0
+case "$1" in
+    start)
+      $PHP_SCRIPT
+      RETVAL=$?
+  ;;
+    stop)
+      killall -9 php-cgi
+      RETVAL=$?
+  ;;
+    restart)
+      killall -9 php-cgi
+      $PHP_SCRIPT
+      RETVAL=$?
+  ;;
+    *)
+      echo "Usage: init-fastcgi {start|stop|restart}"
+      exit 1
+  ;;
+esac      
+exit $RETVAL

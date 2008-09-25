@@ -79,7 +79,7 @@ if(is_file($dump_file)) {
     
   log_message("Asset Retriever url: $asset_retriever_url");
     
-  file_get_contents_with_timeout($asset_retriever_url);
+  file_get_contents($asset_retriever_url);
 }
 
 

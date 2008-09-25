@@ -8,10 +8,11 @@ asset_retriever:
   port: '6765'
   endpoint: '/fetch'
   download_command: '/opt/local/bin/wget "%s" -O "%s"'
+  allow_only_from: '^http:\/\/n(.*?)mobshare\.in(.*)'
   prune_days: '1' #in days, to retain in the cache by default
   prune_command: 'find * -prune -mtime +%s'
 
 content_types:
-  'jpg' => 'image/jpeg'
-  'flv' => 'video/flv'
-  '3gp' => 'video/3gpp'
+  '.jpg': 'image/jpeg'
+  '.flv': 'video/flv'
+  '.3gp': 'video/3gpp'

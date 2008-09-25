@@ -17,9 +17,13 @@ $settings = YAML.load(File.open('../settings.yml', 'r'))
 def asset_retriever(env)
   asset_url = env['PATH_INFO'].gsub(/^\/*/, '')
   response_hash = { "Content-Type" => "text/plain", "Content-Length" => '0' }
-  unless asset_url == 'favicon.ico'
+  
+  allow_regex = Regex.new($settings['asset_retriever']['allow_only_from'])
+  
+  if asset_url.match(allow_regex)
     dump(asset_url)
   end
+  
   [200, response_hash, [""]]
 end 
 

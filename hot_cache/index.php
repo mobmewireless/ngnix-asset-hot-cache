@@ -97,7 +97,7 @@ array(headers, body): 			if everything's fine.
   TIMED OUT 									if it times out.
   UNABLE TO OPEN  						if we can't connect to host.
   */
-function file_get_contents_with_timeout($url, $read_timeout = 2, $connection_timeout = 2) {
+function file_get_contents_with_timeout($url, $read_timeout = 1, $connection_timeout = 1) {
   $url_parts = parse_url($url);
 
   $host = $url_parts['host'];

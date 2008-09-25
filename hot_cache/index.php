@@ -79,7 +79,7 @@ if(is_file($dump_file)) {
     
   log_message("Asset Retriever url: $asset_retriever_url");
     
-  curl_file_get_contents($asset_retriever_url);
+  file_get_contents_with_timeout($asset_retriever_url);
 }
 
 
@@ -94,14 +94,14 @@ function log_message($message) {
 
 function curl_file_get_contents($url)
 {
-    $ch = curl_init();
-    $timeout = 5; // set to zero for no timeout
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-    $file_contents = curl_exec($ch);
-    curl_close($ch);
-    return $file_contents;
+  $ch = curl_init();
+  $timeout = 5; // set to zero for no timeout
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+  $file_contents = curl_exec($ch);
+  curl_close($ch);
+  return $file_contents;
 }
 
 /* This works only for simple URIs

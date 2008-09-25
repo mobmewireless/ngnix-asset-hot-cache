@@ -5,8 +5,13 @@ dump_dir: 'dump'
       
 asset_retriever:
   host: 'localhost'
-  port: '8765'
+  port: '6765'
   endpoint: '/fetch'
   download_command: '/opt/local/bin/wget "%s" -O "%s"'
   prune_days: '1' #in days, to retain in the cache by default
   prune_command: 'find * -prune -mtime +%s'
+
+content_types:
+  'jpg' => 'image/jpeg'
+  'flv' => 'video/flv'
+  '3gp' => 'video/3gpp'

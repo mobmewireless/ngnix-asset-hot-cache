@@ -104,7 +104,9 @@ function file_get_contents_with_timeout($url, $read_timeout = 5, $connection_tim
   $host = $url_parts['host'];
   $port = $url_parts['port'];
   $path = array_key_exists('path', $url_parts) ? $url_parts['path'] : '/';
-  $get = $path . '?' . $url_parts['query'];
+  $get = $path . (array_key_exists('query', $url_parts) ? '?' . $url_parts['query'] : '');
+  
+  var_dump(array($host, $port, $path, $get));
 
   $fp = fsockopen($host, $port, $errno, $errstr, $connection_timeout);
   if (!$fp) {

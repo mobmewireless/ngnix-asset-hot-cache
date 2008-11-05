@@ -1,0 +1,14 @@
+--- 
+pid: tmp/pids/thin.pid
+user: www-data
+rackup: ./config.ru
+log: log/thin.log
+timeout: 30
+max_conns: 1024
+port: 2222
+environment: development
+max_persistent_conns: 512
+daemonize: false
+chdir: /home/mobshare/deploy/asset_retriever
+address: localhost
+group: www-data

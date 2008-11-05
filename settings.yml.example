@@ -16,3 +16,4 @@ content_types:
   '.jpg': 'image/jpeg'
   '.flv': 'video/flv'
   '.3gp': 'video/3gpp'
+  '.gif': 'image/gif'

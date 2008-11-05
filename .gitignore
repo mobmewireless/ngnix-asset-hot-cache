@@ -2,3 +2,6 @@
 vendor
 dump
 settings.yml
+asset_retriever/asset_retriever.yml
+asset_retriever/log
+asset_retriever/tmp

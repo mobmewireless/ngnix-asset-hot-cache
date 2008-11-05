@@ -41,6 +41,7 @@ $asset_url = filter_var($_SERVER['QUERY_STRING'], FILTER_SANITIZE_URL);
 $dump_location = str_replace(array('http://', 'https://', '/'), array('', '', '__'), $asset_url);
 $dump_file = "../" . $settings['dump_dir'] . '/' . $dump_location;
 $send_file_header = 'X-Accel-Redirect: /dump/' . $dump_location;
+$expires_header = "Expires: Thu, 15 Apr 2030 20:00:00 GMT"; /* Expires only at 2030 */
 log_message($send_file_header);
 
 log_message("Initing...");
@@ -63,6 +64,7 @@ if(is_file($dump_file)) {
   
   log_message("Mime-type is: ". $mime_type);
   header("Content-Type: " . $mime_type);
+  header($expires_header);
   header($send_file_header);
 } else { 
   # file not in cache
